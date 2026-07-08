@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+<style>
+  *{ box-sizing:border-box; }
+  html,body{ margin:0; padding:0; }
+  body{ font-family:'Nunito',system-ui,sans-serif; background:#FBF4EA; color:#3B2E2A; -webkit-font-smoothing:antialiased; }
+  a{ color:#EE6C4D; text-decoration:none; }
+  a:hover{ color:#D9553A; }
+  ::selection{ background:#F2B441; color:#3B2E2A; }
+  @keyframes floaty{ 0%,100%{ transform:translateY(0); } 50%{ transform:translateY(-14px); } }
+  @keyframes floaty2{ 0%,100%{ transform:translateY(0); } 50%{ transform:translateY(10px); } }
+  @keyframes fadeUp{ from{ opacity:0; transform:translateY(16px); } to{ opacity:1; transform:translateY(0); } }
+  .hsh-fade{ animation:fadeUp .5s ease both; }
+</style>
+</helmet>
+
+<div style="min-height:100vh; overflow-x:hidden;">
+
+  <!-- ===================== HEADER ===================== -->
+  <header style="position:sticky; top:0; z-index:50; background:rgba(251,244,234,0.88); backdrop-filter:blur(10px); border-bottom:1px solid #EFE3D2;">
+    <div style="max-width:1180px; margin:0 auto; padding:14px 24px; display:flex; align-items:center; gap:20px;">
+      <button onClick="{{ toHome }}" style="display:flex; align-items:center; gap:12px; background:none; border:none; cursor:pointer; padding:0;">
+        <span style="width:46px; height:46px; border-radius:16px; background:#EE6C4D; display:flex; align-items:center; justify-content:center; color:#fff; font-family:'Fredoka'; font-weight:700; font-size:20px; box-shadow:0 6px 16px rgba(238,108,77,0.35); transform:rotate(-4deg);">hsh</span>
+        <span style="text-align:left; line-height:1.05;">
+          <span style="display:block; font-family:'Fredoka'; font-weight:600; font-size:19px; color:#3B2E2A;">Home Sweet Home</span>
+          <span style="display:block; font-size:11px; letter-spacing:2px; text-transform:uppercase; color:#B08968; font-weight:700;">Preschool · Riyadh</span>
+        </span>
+      </button>
+
+      <nav style="margin-left:auto; display:flex; align-items:center; gap:4px; flex-wrap:wrap;">
+        <sc-for list="{{ navItems }}" as="item" hint-placeholder-count="7">
+          <button onClick="{{ item.onClick }}" style="position:relative; background:none; border:none; cursor:pointer; font-family:'Nunito'; font-weight:700; font-size:15px; color:#5A4A42; padding:8px 12px; border-radius:10px;" style-hover="background:#F4E7D6; color:#3B2E2A;">
+            {{ item.label }}
+            <sc-if value="{{ item.active }}" hint-placeholder-val="{{ true }}">
+              <span style="position:absolute; left:12px; right:12px; bottom:2px; height:3px; border-radius:3px; background:#EE6C4D;"></span>
+            </sc-if>
+          </button>
+        </sc-for>
+      </nav>
+
+      <a href="https://calendar.app.google/8sTo9ftobCLnFdQD9" target="_blank" rel="noopener" style="background:#5C9A87; color:#fff; font-family:'Fredoka'; font-weight:600; font-size:14px; padding:11px 20px; border-radius:999px; box-shadow:0 6px 16px rgba(92,154,135,0.35); white-space:nowrap;" style-hover="background:#4F8676;">Book a Visit</a>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ===================== HOME ===================== -->
+    <sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
+    <div class="hsh-fade">
+
+      <!-- HERO -->
+      <section style="position:relative; max-width:1180px; margin:0 auto; padding:70px 24px 40px; display:grid; grid-template-columns:1.05fr 1fr; gap:48px; align-items:center;">
+        <span style="position:absolute; top:60px; right:44%; width:20px; height:20px; border-radius:50%; background:#F2B441; animation:floaty 5s ease-in-out infinite;"></span>
+        <span style="position:absolute; bottom:70px; left:30%; width:14px; height:14px; border-radius:50%; background:#86C4D4; animation:floaty2 6s ease-in-out infinite;"></span>
+        <div>
+          <span style="display:inline-block; background:#FCE6D9; color:#D9553A; font-weight:800; font-size:13px; letter-spacing:1px; text-transform:uppercase; padding:7px 16px; border-radius:999px; margin-bottom:22px;">Caring · Loving · Learning · Since 2011</span>
+          <h1 style="font-family:'Fredoka'; font-weight:700; font-size:58px; line-height:1.04; margin:0 0 20px; color:#3B2E2A; letter-spacing:-1px;">A home away from<br>home where little<br>minds <span style="color:#EE6C4D;">bloom</span>.</h1>
+          <p style="font-size:18px; line-height:1.65; color:#6B5A50; max-width:480px; margin:0 0 32px;">Riyadh's warm, nurturing preschool where every child is celebrated as capable, curious and gifted in their own unique way. We nurture, love and educate.</p>
+          <div style="display:flex; gap:14px; flex-wrap:wrap;">
+            <a href="https://calendar.app.google/8sTo9ftobCLnFdQD9" target="_blank" rel="noopener" style="background:#EE6C4D; color:#fff; font-family:'Fredoka'; font-weight:600; font-size:16px; padding:15px 30px; border-radius:999px; box-shadow:0 10px 24px rgba(238,108,77,0.38);" style-hover="background:#D9553A;">Book a Visit</a>
+            <button onClick="{{ toAcademics }}" style="background:#fff; color:#3B2E2A; border:2px solid #EFE3D2; font-family:'Fredoka'; font-weight:600; font-size:16px; padding:13px 28px; border-radius:999px; cursor:pointer;" style-hover="border-color:#EE6C4D; color:#D9553A;">Explore our classes</button>
+          </div>
+          <div style="display:flex; gap:32px; margin-top:40px;">
+            <div><div style="font-family:'Fredoka'; font-weight:700; font-size:30px; color:#5C9A87;">13+</div><div style="font-size:13px; color:#8A796F; font-weight:600;">Years of care</div></div>
+            <div><div style="font-family:'Fredoka'; font-weight:700; font-size:30px; color:#5C9A87;">12</div><div style="font-size:13px; color:#8A796F; font-weight:600;">Sweet classrooms</div></div>
+            <div><div style="font-family:'Fredoka'; font-weight:700; font-size:30px; color:#5C9A87;">2–6</div><div style="font-size:13px; color:#8A796F; font-weight:600;">Years welcomed</div></div>
+          </div>
+        </div>
+        <div style="position:relative;">
+          <div style="border-radius:36px; overflow:hidden; box-shadow:0 30px 60px rgba(59,46,42,0.18); transform:rotate(1.5deg); border:8px solid #fff;">
+            <img src="https://hsh.edu.sa/images/banners/1623097508.JPG" alt="Home Sweet Home Preschool" style="width:100%; height:460px; object-fit:cover; display:block;">
+          </div>
+          <div style="position:absolute; bottom:-22px; left:-22px; background:#fff; border-radius:20px; padding:16px 20px; box-shadow:0 16px 36px rgba(59,46,42,0.16); display:flex; align-items:center; gap:12px; transform:rotate(-3deg);">
+            <span style="width:44px; height:44px; border-radius:14px; background:#F2B441; display:flex; align-items:center; justify-content:center; font-family:'Fredoka'; font-weight:700; color:#fff; font-size:20px;">★</span>
+            <span style="line-height:1.15;"><span style="display:block; font-weight:800; color:#3B2E2A;">American curriculum</span><span style="display:block; font-size:13px; color:#8A796F;">MOE authorized · accredited</span></span>
+          </div>
+        </div>
+      </section>
+
+      <!-- STORY STRIP -->
+      <section style="max-width:1180px; margin:36px auto 0; padding:0 24px;">
+        <div style="background:#5C9A87; border-radius:32px; padding:52px 56px; color:#fff; display:grid; grid-template-columns:1fr 1fr; gap:44px; align-items:center;">
+          <div>
+            <span style="font-family:'Fredoka'; font-weight:500; font-size:15px; letter-spacing:2px; text-transform:uppercase; color:#CDE7DD;">Our Story</span>
+            <h2 style="font-family:'Fredoka'; font-weight:700; font-size:34px; margin:10px 0 16px; line-height:1.1;">"Caring, loving &amp; learning!"</h2>
+            <p style="font-size:17px; line-height:1.7; color:#EAF4EF; margin:0;">Since 2011, a sweet journey of caring, loving and learning has begun. We've re-created the feeling of home as closely as possible, so children and families feel they belong from the very first day.</p>
+          </div>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+            <div style="background:rgba(255,255,255,0.14); border-radius:20px; padding:22px;"><div style="font-family:'Fredoka'; font-weight:700; font-size:22px;">Nurture</div><div style="color:#DCEDE6; font-size:14px; margin-top:4px;">A warm, stimulating home away from home.</div></div>
+            <div style="background:rgba(255,255,255,0.14); border-radius:20px; padding:22px;"><div style="font-family:'Fredoka'; font-weight:700; font-size:22px;">Love</div><div style="color:#DCEDE6; font-size:14px; margin-top:4px;">Every child is loved, respected, encouraged.</div></div>
+            <div style="background:rgba(255,255,255,0.14); border-radius:20px; padding:22px;"><div style="font-family:'Fredoka'; font-weight:700; font-size:22px;">Educate</div><div style="color:#DCEDE6; font-size:14px; margin-top:4px;">Create… Play… Explore — every single day.</div></div>
+            <div style="background:rgba(255,255,255,0.14); border-radius:20px; padding:22px;"><div style="font-family:'Fredoka'; font-weight:700; font-size:22px;">Belong</div><div style="color:#DCEDE6; font-size:14px; margin-top:4px;">A true sense of family and belonging.</div></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- WHY HSH -->
+      <section style="max-width:1180px; margin:0 auto; padding:80px 24px 20px;">
+        <div style="text-align:center; margin-bottom:44px;">
+          <span style="font-family:'Fredoka'; font-weight:500; font-size:15px; letter-spacing:2px; text-transform:uppercase; color:#EE6C4D;">Why HSH</span>
+          <h2 style="font-family:'Fredoka'; font-weight:700; font-size:40px; margin:8px 0 0; color:#3B2E2A;">Unrivaled in care &amp; creativity</h2>
+        </div>
+        <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:22px;">
+          <sc-for list="{{ whyPoints }}" as="w" hint-placeholder-count="6">
+            <div style="background:#fff; border-radius:24px; padding:30px; box-shadow:0 12px 30px rgba(59,46,42,0.06);">
+              <span style="display:block; width:52px; height:52px; border-radius:16px; margin-bottom:18px; background:{{ w.color }};"></span>
+              <h3 style="font-family:'Fredoka'; font-weight:600; font-size:21px; margin:0 0 8px; color:#3B2E2A;">{{ w.title }}</h3>
+              <p style="font-size:15px; line-height:1.6; color:#7A6A62; margin:0;">{{ w.body }}</p>
+            </div>
+          </sc-for>
+        </div>
+      </section>
+
+      <!-- CLASSES TEASER -->
+      <section style="max-width:1180px; margin:0 auto; padding:60px 24px 20px;">
+        <div style="display:flex; align-items:end; justify-content:space-between; margin-bottom:30px; flex-wrap:wrap; gap:16px;">
+          <div>
+            <span style="font-family:'Fredoka'; font-weight:500; font-size:15px; letter-spacing:2px; text-transform:uppercase; color:#EE6C4D;">Our Classes</span>
+            <h2 style="font-family:'Fredoka'; font-weight:700; font-size:40px; margin:8px 0 0; color:#3B2E2A;">Sweet little homerooms</h2>
+          </div>
+          <button onClick="{{ toAcademics }}" style="background:none; border:none; cursor:pointer; font-family:'Fredoka'; font-weight:600; font-size:16px; color:#EE6C4D;" style-hover="color:#D9553A;">See all 12 classes →</button>
+        </div>
+        <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:18px;">
+          <sc-for list="{{ classesTop }}" as="c" hint-placeholder-count="4">
+            <div style="background:#fff; border-radius:22px; overflow:hidden; box-shadow:0 12px 30px rgba(59,46,42,0.07);">
+              <div style="height:150px; background:{{ c.color }}; overflow:hidden;"><img src="{{ c.img }}" alt="{{ c.name }}" style="width:100%; height:100%; object-fit:cover; display:block;"></div>
+              <div style="padding:16px 18px;"><div style="font-family:'Fredoka'; font-weight:600; font-size:18px; color:#3B2E2A;">{{ c.name }}</div><div style="font-size:13px; color:#8A796F; font-weight:600;">{{ c.age }}</div></div>
+            </div>
+          </sc-for>
+        </div>
+      </section>
+
+      <!-- TESTIMONIALS -->
+      <section style="max-width:1180px; margin:0 auto; padding:70px 24px 30px;">
+        <div style="text-align:center; margin-bottom:40px;">
+          <span style="font-family:'Fredoka'; font-weight:500; font-size:15px; letter-spacing:2px; text-transform:uppercase; color:#EE6C4D;">Testimonials</span>
+          <h2 style="font-family:'Fredoka'; font-weight:700; font-size:40px; margin:8px 0 0; color:#3B2E2A;">Loved by Riyadh families</h2>
+        </div>
+        <div style="columns:3; column-gap:20px;">
+          <sc-for list="{{ testimonials }}" as="t" hint-placeholder-count="6">
+            <div style="break-inside:avoid; background:#fff; border-radius:22px; padding:26px; margin-bottom:20px; box-shadow:0 10px 26px rgba(59,46,42,0.06); border-top:5px solid {{ t.color }};">
+              <p dir="{{ t.dir }}" style="font-size:15.5px; line-height:1.65; color:#4B3E38; margin:0 0 14px;">"{{ t.quote }}"</p>
+              <div style="font-family:'Fredoka'; font-weight:600; font-size:14px; color:#EE6C4D;">{{ t.name }}</div>
+            </div>
+          </sc-for>
+        </div>
+      </section>
+
+      <!-- CTA -->
+      <section style="max-width:1180px; margin:40px auto 90px; padding:0 24px;">
+        <div style="background:linear-gradient(120deg,#EE6C4D,#F2B441); border-radius:36px; padding:60px; text-align:center; color:#fff; position:relative; overflow:hidden;">
+          <h2 style="font-family:'Fredoka'; font-weight:700; font-size:42px; margin:0 0 14px;">Come see our home in person</h2>
+          <p style="font-size:18px; color:#FFF3E9; margin:0 auto 30px; max-width:560px; line-height:1.6;">We'd love to welcome your family. Book a visit, join the waiting list, or reach out — your child's sweet journey starts here.</p>
+          <div style="display:flex; gap:14px; justify-content:center; flex-wrap:wrap;">
+            <a href="https://calendar.app.google/8sTo9ftobCLnFdQD9" target="_blank" rel="noopener" style="background:#fff; color:#D9553A; font-family:'Fredoka'; font-weight:600; font-size:16px; padding:15px 32px; border-radius:999px;" style-hover="background:#FFF3E9;">Book a Visit</a>
+            <button onClick="{{ toAdmission }}" style="background:rgba(255,255,255,0.2); color:#fff; border:2px solid rgba(255,255,255,0.6); font-family:'Fredoka'; font-weight:600; font-size:16px; padding:13px 30px; border-radius:999px; cursor:pointer;" style-hover="background:rgba(255,255,255,0.3);">Admission info</button>
+          </div>
+        </div>
+      </section>
+
+    </div>
+    </sc-if>
+
+    <!-- ===================== ABOUT ===================== -->
+    <sc-if value="{{ isAbout }}" hint-placeholder-val="{{ true }}">
+    <div class="hsh-fade">
+      <div style="max-width:1180px; margin:0 auto; padding:56px 24px 10px;">
+        <span style="font-family:'Fredoka'; font-weight:500; font-size:15px; letter-spacing:2px; text-transform:uppercase; color:#EE6C4D;">About HSH</span>
+        <h1 style="font-family:'Fredoka'; font-weight:700; font-size:48px; margin:8px 0 0; color:#3B2E2A;">Your home away from home</h1>
+      </div>
+
+      <!-- Philosophy -->
+      <section style="max-width:1180px; margin:0 auto; padding:40px 24px;">
+        <div style="background:#fff; border-radius:32px; padding:48px 52px; box-shadow:0 14px 34px rgba(59,46,42,0.07);">
+          <h2 style="font-family:'Fredoka'; font-weight:700; font-size:30px; color:#5C9A87; margin:0 0 16px;">Our Philosophy</h2>
+          <p style="font-size:17.5px; line-height:1.75; color:#5B4C44; margin:0; max-width:900px;">We provide a "home away from home" that reinforces the importance of education, love, and a supportive, creative environment. Every child is gifted in their own unique way. We view children as capable, competent co-contributors and active participants in their own learning — blending child-initiated learning, adult-enriched learning, children's interests, and intentional teaching.</p>
+        </div>
+      </section>
+
+      <!-- Vision / Mission -->
+      <section style="max-width:1180px; margin:0 auto; padding:20px 24px; display:grid; grid-template-columns:1fr 1fr; gap:24px;">
+        <div style="border-radius:28px; overflow:hidden; position:relative; min-height:300px; box-shadow:0 14px 34px rgba(59,46,42,0.1);">
+          <img src="https://hsh.edu.sa/images/content/our-vision.jpg" alt="Our Vision" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover;">
+          <div style="position:absolute; inset:0; background:linear-gradient(180deg,rgba(59,46,42,0) 30%,rgba(59,46,42,0.82)); display:flex; align-items:end; padding:32px;">
+            <div><h3 style="font-family:'Fredoka'; font-weight:700; font-size:26px; color:#fff; margin:0 0 8px;">Our Vision</h3><p style="color:#F4E7D6; font-size:15px; line-height:1.6; margin:0;">Inspiring children to encounter the world with joy, curiosity and confidence — feeling loved, respected and encouraged to reach their fullest potential.</p></div>
+          </div>
+        </div>
+        <div style="border-radius:28px; overflow:hidden; position:relative; min-height:300px; box-shadow:0 14px 34px rgba(59,46,42,0.1);">
+          <img src="https://hsh.edu.sa/images/content/our-mission.jpg" alt="Our Mission" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover;">
+          <div style="position:absolute; inset:0; background:linear-gradient(180deg,rgba(59,46,42,0) 30%,rgba(59,46,42,0.82)); display:flex; align-items:end; padding:32px;">
+            <div><h3 style="font-family:'Fredoka'; font-weight:700; font-size:26px; color:#fff; margin:0 0 8px;">Our Mission</h3><p style="color:#F4E7D6; font-size:15px; line-height:1.6; margin:0;">"Our home where we Create… Play… Explore!" A program designed for the well-rounded development of children — meeting and exceeding expectations of care and learning.</p></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Values -->
+      <section style="max-width:1180px; margin:0 auto; padding:50px 24px 20px;">
+        <div style="text-align:center; margin-bottom:36px;">
+          <span style="font-family:'Fredoka'; font-weight:500; font-size:15px; letter-spacing:2px; text-transform:uppercase; color:#EE6C4D;">Our Values</span>
+          <h2 style="font-family:'Fredoka'; font-weight:700; font-size:38px; margin:8px 0 0; color:#3B2E2A;">What we hold dear</h2>
+        </div>
+        <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:16px;">
+          <sc-for list="{{ values }}" as="v" hint-placeholder-count="8">
+            <div style="background:#fff; border-radius:20px; padding:24px; text-align:center; box-shadow:0 10px 24px rgba(59,46,42,0.06);">
+              <div style="width:48px; height:48px; border-radius:14px; background:{{ v.color }}; color:#fff; font-family:'Fredoka'; font-weight:700; font-size:20px; display:flex; align-items:center; justify-content:center; margin:0 auto 14px;">{{ v.n }}</div>
+              <div style="font-family:'Fredoka'; font-weight:600; font-size:18px; color:#3B2E2A;">{{ v.name }}</div>
+            </div>
+          </sc-for>
+        </div>
+      </section>
+
+      <!-- Why HSH detail -->
+      <section style="max-width:1180px; margin:0 auto; padding:50px 24px;">
+        <div style="display:grid; grid-template-columns:1fr 1.1fr; gap:36px; align-items:center;">
+          <div style="border-radius:28px; overflow:hidden; box-shadow:0 16px 38px rgba(59,46,42,0.12);"><img src="https://hsh.edu.sa/images/content/why-hsh.jpg" alt="Why HSH" style="width:100%; height:420px; object-fit:cover; display:block;"></div>
+          <div>
+            <h2 style="font-family:'Fredoka'; font-weight:700; font-size:32px; color:#3B2E2A; margin:0 0 8px;">Why choose HSH?</h2>
+            <p style="font-style:italic; color:#8A796F; margin:0 0 22px; font-size:15px;">"Tell me and I forget, teach me and I remember, include me and I learn." — Benjamin Franklin</p>
+            <div style="display:flex; flex-direction:column; gap:14px;">
+              <sc-for list="{{ whyPoints }}" as="w" hint-placeholder-count="5">
+                <div style="display:flex; gap:14px; align-items:start;">
+                  <span style="flex:none; width:12px; height:12px; border-radius:50%; margin-top:6px; background:{{ w.color }};"></span>
+                  <div><span style="font-family:'Fredoka'; font-weight:600; color:#3B2E2A;">{{ w.title }} — </span><span style="color:#7A6A62; font-size:15px;">{{ w.body }}</span></div>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Accreditation -->
+      <section style="max-width:1180px; margin:0 auto; padding:20px 24px 40px;">
+        <div style="background:#40342E; border-radius:32px; padding:48px 52px; color:#fff; display:grid; grid-template-columns:1fr 1fr; gap:40px; align-items:center;">
+          <div>
+            <span style="font-family:'Fredoka'; font-weight:500; font-size:14px; letter-spacing:2px; text-transform:uppercase; color:#F2B441;">Accreditation</span>
+            <h2 style="font-family:'Fredoka'; font-weight:700; font-size:30px; margin:10px 0 18px;">Trusted &amp; certified</h2>
+            <div style="display:flex; flex-direction:column; gap:16px;">
+              <div><div style="font-family:'Fredoka'; font-weight:600; font-size:17px; color:#F2B441;">Ministry of Education</div><p style="color:#E4D6CB; font-size:14.5px; line-height:1.6; margin:4px 0 0;">Compliant with mandatory MOE requirements as an American Authorized School in Riyadh.</p></div>
+              <div><div style="font-family:'Fredoka'; font-weight:600; font-size:17px; color:#F2B441;">Early Childhood Program</div><p style="color:#E4D6CB; font-size:14.5px; line-height:1.6; margin:4px 0 0;">High-quality learning foundations verified through internal self-study and external professional review.</p></div>
+              <div><div style="font-family:'Fredoka'; font-weight:600; font-size:17px; color:#F2B441;">Boecker® SCC™ Certification</div><p style="color:#E4D6CB; font-size:14.5px; line-height:1.6; margin:4px 0 0;">New global standards in health protection for children across our facility.</p></div>
+            </div>
+          </div>
+          <div style="border-radius:24px; overflow:hidden;"><img src="https://hsh.edu.sa/images/content/accrediation.jpg" alt="Accreditation" style="width:100%; height:340px; object-fit:cover; display:block;"></div>
+        </div>
+      </section>
+
+      <!-- Partners -->
+      <section style="max-width:1180px; margin:0 auto; padding:20px 24px 80px;">
+        <h3 style="text-align:center; font-family:'Fredoka'; font-weight:600; font-size:22px; color:#8A796F; margin:0 0 28px;">Our Trusted Partners</h3>
+        <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:18px;">
+          <sc-for list="{{ partners }}" as="p" hint-placeholder-count="8">
+            <div style="background:#fff; border-radius:18px; padding:18px 26px; box-shadow:0 8px 20px rgba(59,46,42,0.05); height:88px; display:flex; align-items:center; justify-content:center; min-width:150px;">
+              <img src="{{ p.img }}" alt="{{ p.name }}" style="max-height:52px; max-width:130px; object-fit:contain;">
+            </div>
+          </sc-for>
+        </div>
+      </section>
+    </div>
+    </sc-if>
+
+    <!-- ===================== ACADEMICS ===================== -->
+    <sc-if value="{{ isAcademics }}" hint-placeholder-val="{{ true }}">
+    <div class="hsh-fade">
+      <div style="max-width:1180px; margin:0 auto; padding:56px 24px 10px;">
+        <span style="font-family:'Fredoka'; font-weight:500; font-size:15px; letter-spacing:2px; text-transform:uppercase; color:#EE6C4D;">Academics</span>
+        <h1 style="font-family:'Fredoka'; font-weight:700; font-size:48px; margin:8px 0 0; color:#3B2E2A;">Learning through play</h1>
+        <p style="font-size:18px; color:#6B5A50; max-width:720px; line-height:1.65; margin:16px 0 0;">A strong, diverse and carefully structured curriculum that nurtures creativity and intellect from the earliest ages — driven by children's interests and age-appropriate practice.</p>
+      </div>
+
+      <!-- Curriculum by age -->
+      <section style="max-width:1180px; margin:0 auto; padding:46px 24px 20px;">
+        <h2 style="font-family:'Fredoka'; font-weight:700; font-size:32px; color:#3B2E2A; margin:0 0 28px;">Our curriculum by age</h2>
+        <div style="display:grid; grid-template-columns:repeat(2,1fr); gap:22px;">
+          <sc-for list="{{ curriculum }}" as="s" hint-placeholder-count="4">
+            <div style="background:#fff; border-radius:26px; padding:32px; box-shadow:0 12px 30px rgba(59,46,42,0.07); border-left:6px solid {{ s.color }};">
+              <div style="display:flex; align-items:center; gap:14px; margin-bottom:16px;">
+                <span style="background:{{ s.color }}; color:#fff; font-family:'Fredoka'; font-weight:700; font-size:16px; padding:8px 16px; border-radius:999px;">{{ s.age }}</span>
+                <h3 style="font-family:'Fredoka'; font-weight:600; font-size:22px; color:#3B2E2A; margin:0;">{{ s.title }}</h3>
+              </div>
+              <p style="font-size:15px; line-height:1.65; color:#7A6A62; margin:0 0 14px;">{{ s.intro }}</p>
+              <ul style="margin:0; padding:0; list-style:none; display:flex; flex-direction:column; gap:8px;">
+                <sc-for list="{{ s.points }}" as="pt" hint-placeholder-count="4">
+                  <li style="display:flex; gap:10px; align-items:start; font-size:14.5px; color:#5B4C44;"><span style="flex:none; width:7px; height:7px; border-radius:50%; margin-top:7px; background:{{ s.color }};"></span>{{ pt }}</li>
+                </sc-for>
+              </ul>
+            </div>
+          </sc-for>
+        </div>
+      </section>
+
+      <!-- All classes -->
+      <section style="max-width:1180px; margin:0 auto; padding:50px 24px 20px;">
+        <h2 style="font-family:'Fredoka'; font-weight:700; font-size:32px; color:#3B2E2A; margin:0 0 8px;">Our 12 sweet classes</h2>
+        <p style="font-size:16px; color:#7A6A62; margin:0 0 28px; max-width:700px;">Every class is a unique environment with an emergent curriculum tailored to the developmental needs of its age group — cognitive, physical, social, emotional and academic.</p>
+        <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:18px;">
+          <sc-for list="{{ classes }}" as="c" hint-placeholder-count="12">
+            <div style="background:#fff; border-radius:22px; overflow:hidden; box-shadow:0 12px 30px rgba(59,46,42,0.07);">
+              <div style="height:150px; background:{{ c.color }}; overflow:hidden;"><img src="{{ c.img }}" alt="{{ c.name }}" style="width:100%; height:100%; object-fit:cover; display:block;"></div>
+              <div style="padding:15px 18px;"><div style="font-family:'Fredoka'; font-weight:600; font-size:18px; color:#3B2E2A;">{{ c.name }}</div><div style="font-size:13px; color:#8A796F; font-weight:600;">{{ c.age }}</div></div>
+            </div>
+          </sc-for>
+        </div>
+      </section>
+
+      <!-- Educators -->
+      <section style="max-width:1180px; margin:0 auto; padding:56px 24px 80px;">
+        <h2 style="font-family:'Fredoka'; font-weight:700; font-size:32px; color:#3B2E2A; margin:0 0 28px;">Meet our educators</h2>
+        <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:18px;">
+          <sc-for list="{{ educators }}" as="e" hint-placeholder-count="7">
+            <div style="background:#fff; border-radius:22px; padding:26px; box-shadow:0 10px 26px rgba(59,46,42,0.06);">
+              <span style="width:56px; height:56px; border-radius:50%; background:{{ e.color }}; color:#fff; font-family:'Fredoka'; font-weight:700; font-size:22px; display:flex; align-items:center; justify-content:center; margin-bottom:16px;">{{ e.initial }}</span>
+              <div style="font-family:'Fredoka'; font-weight:600; font-size:18px; color:#3B2E2A;">{{ e.name }}</div>
+              <div style="font-size:13.5px; color:#EE6C4D; font-weight:700; margin:2px 0 10px;">{{ e.role }}</div>
+              <a href="mailto:{{ e.email }}" style="font-size:13px; color:#8A796F;" style-hover="color:#EE6C4D;">{{ e.email }}</a>
+            </div>
+          </sc-for>
+        </div>
+      </section>
+    </div>
+    </sc-if>
+
+    <!-- ===================== ADMISSION ===================== -->
+    <sc-if value="{{ isAdmission }}" hint-placeholder-val="{{ true }}">
+    <div class="hsh-fade">
+      <div style="max-width:1180px; margin:0 auto; padding:56px 24px 10px;">
+        <span style="font-family:'Fredoka'; font-weight:500; font-size:15px; letter-spacing:2px; text-transform:uppercase; color:#EE6C4D;">Admission</span>
+        <h1 style="font-family:'Fredoka'; font-weight:700; font-size:48px; margin:8px 0 0; color:#3B2E2A;">Join our family</h1>
+        <p style="font-size:18px; color:#6B5A50; max-width:700px; line-height:1.65; margin:16px 0 0;">We cordially invite you to join our home and family. Here's how to begin your child's sweet journey with us.</p>
+      </div>
+
+      <section style="max-width:1180px; margin:0 auto; padding:44px 24px 20px;">
+        <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:18px;">
+          <sc-for list="{{ admissionSteps }}" as="a" hint-placeholder-count="4">
+            <div style="background:#fff; border-radius:24px; padding:30px; box-shadow:0 12px 30px rgba(59,46,42,0.07); position:relative;">
+              <span style="font-family:'Fredoka'; font-weight:700; font-size:40px; color:{{ a.color }}; opacity:0.9;">{{ a.n }}</span>
+              <h3 style="font-family:'Fredoka'; font-weight:600; font-size:19px; color:#3B2E2A; margin:6px 0 8px;">{{ a.title }}</h3>
+              <p style="font-size:14.5px; line-height:1.6; color:#7A6A62; margin:0;">{{ a.body }}</p>
+            </div>
+          </sc-for>
+        </div>
+      </section>
+
+      <section style="max-width:1180px; margin:0 auto; padding:30px 24px;">
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:24px;">
+          <div style="background:#5C9A87; border-radius:28px; padding:40px; color:#fff;">
+            <h2 style="font-family:'Fredoka'; font-weight:700; font-size:26px; margin:0 0 12px;">Admission Policy</h2>
+            <p style="font-size:15.5px; line-height:1.7; color:#EAF4EF; margin:0;">We welcome all children aged 2–6 in an inclusive, respectful environment. Placement follows age group and availability. Our team guides you through documentation, assessment of your child's needs, and a warm settling-in period so every family feels at home from day one.</p>
+          </div>
+          <div style="background:#fff; border-radius:28px; padding:40px; box-shadow:0 12px 30px rgba(59,46,42,0.07);">
+            <h2 style="font-family:'Fredoka'; font-weight:700; font-size:26px; color:#3B2E2A; margin:0 0 16px;">Get started today</h2>
+            <div style="display:flex; flex-direction:column; gap:12px;">
+              <a href="https://calendar.app.google/8sTo9ftobCLnFdQD9" target="_blank" rel="noopener" style="background:#EE6C4D; color:#fff; font-family:'Fredoka'; font-weight:600; font-size:16px; padding:15px; border-radius:16px; text-align:center;" style-hover="background:#D9553A;">Book a Visit</a>
+              <a href="https://docs.google.com/forms/d/e/1FAIpQLSeR4qmhN4pbZo88Ysc9Jpi_dhP35IcZtMPMqaYoR4iQWTejBQ/viewform" target="_blank" rel="noopener" style="background:#F2B441; color:#3B2E2A; font-family:'Fredoka'; font-weight:600; font-size:16px; padding:15px; border-radius:16px; text-align:center;" style-hover="background:#E5A82F;">Pre-Registration &amp; Waiting List</a>
+              <a href="https://hsh.edu.sa/tuition-fees" target="_blank" rel="noopener" style="background:#fff; color:#3B2E2A; border:2px solid #EFE3D2; font-family:'Fredoka'; font-weight:600; font-size:16px; padding:13px; border-radius:16px; text-align:center;" style-hover="border-color:#EE6C4D; color:#D9553A;">View Tuition Fees</a>
+            </div>
+          </div>
+        </div>
+      </section>
+      <div style="height:70px;"></div>
+    </div>
+    </sc-if>
+
+    <!-- ===================== GALLERY ===================== -->
+    <sc-if value="{{ isGallery }}" hint-placeholder-val="{{ true }}">
+    <div class="hsh-fade">
+      <div style="max-width:1180px; margin:0 auto; padding:56px 24px 10px;">
+        <span style="font-family:'Fredoka'; font-weight:500; font-size:15px; letter-spacing:2px; text-transform:uppercase; color:#EE6C4D;">Gallery</span>
+        <h1 style="font-family:'Fredoka'; font-weight:700; font-size:48px; margin:8px 0 0; color:#3B2E2A;">Moments from our home</h1>
+      </div>
+      <section style="max-width:1180px; margin:0 auto; padding:36px 24px 80px;">
+        <div style="columns:4; column-gap:16px;">
+          <sc-for list="{{ gallery }}" as="g" hint-placeholder-count="18">
+            <a href="{{ g }}" target="_blank" rel="noopener" style="display:block; break-inside:avoid; margin-bottom:16px; border-radius:18px; overflow:hidden; box-shadow:0 8px 22px rgba(59,46,42,0.08);">
+              <img src="{{ g }}" alt="Home Sweet Home moment" style="width:100%; display:block;" style-hover="transform:scale(1.04);">
+            </a>
+          </sc-for>
+        </div>
+      </section>
+    </div>
+    </sc-if>
+
+    <!-- ===================== NEWS ===================== -->
+    <sc-if value="{{ isNews }}" hint-placeholder-val="{{ true }}">
+    <div class="hsh-fade">
+      <div style="max-width:1180px; margin:0 auto; padding:56px 24px 10px;">
+        <span style="font-family:'Fredoka'; font-weight:500; font-size:15px; letter-spacing:2px; text-transform:uppercase; color:#EE6C4D;">News &amp; Media</span>
+        <h1 style="font-family:'Fredoka'; font-weight:700; font-size:48px; margin:8px 0 0; color:#3B2E2A;">What's happening at HSH</h1>
+      </div>
+      <section style="max-width:1180px; margin:0 auto; padding:40px 24px 80px;">
+        <h2 style="font-family:'Fredoka'; font-weight:700; font-size:26px; color:#3B2E2A; margin:0 0 22px;">Events &amp; celebrations</h2>
+        <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:20px;">
+          <sc-for list="{{ news }}" as="n" hint-placeholder-count="9">
+            <div style="background:#fff; border-radius:24px; padding:28px; box-shadow:0 12px 30px rgba(59,46,42,0.07); border-top:6px solid {{ n.color }};">
+              <span style="display:inline-block; background:{{ n.color }}; color:#fff; font-family:'Fredoka'; font-weight:600; font-size:12px; padding:5px 12px; border-radius:999px; margin-bottom:14px;">{{ n.date }}</span>
+              <h3 dir="{{ n.dir }}" style="font-family:'Fredoka'; font-weight:600; font-size:20px; color:#3B2E2A; margin:0 0 8px;">{{ n.title }}</h3>
+              <p dir="{{ n.dir }}" style="font-size:14.5px; line-height:1.6; color:#7A6A62; margin:0;">{{ n.body }}</p>
+            </div>
+          </sc-for>
+        </div>
+      </section>
+    </div>
+    </sc-if>
+
+    <!-- ===================== CONTACT ===================== -->
+    <sc-if value="{{ isContact }}" hint-placeholder-val="{{ true }}">
+    <div class="hsh-fade">
+      <div style="max-width:1180px; margin:0 auto; padding:56px 24px 10px;">
+        <span style="font-family:'Fredoka'; font-weight:500; font-size:15px; letter-spacing:2px; text-transform:uppercase; color:#EE6C4D;">Contact</span>
+        <h1 style="font-family:'Fredoka'; font-weight:700; font-size:48px; margin:8px 0 0; color:#3B2E2A;">Come say hello</h1>
+      </div>
+      <section style="max-width:1180px; margin:0 auto; padding:40px 24px; display:grid; grid-template-columns:1fr 1.15fr; gap:28px;">
+        <div style="display:flex; flex-direction:column; gap:18px;">
+          <div style="background:#fff; border-radius:24px; padding:30px; box-shadow:0 12px 30px rgba(59,46,42,0.07);">
+            <h3 style="font-family:'Fredoka'; font-weight:600; font-size:20px; color:#3B2E2A; margin:0 0 10px;">Visit us</h3>
+            <p style="font-size:15px; line-height:1.7; color:#6B5A50; margin:0;">3555 Abdullah al Baihaqi,<br>Al Muhammadiyah District, Unit 2<br>Riyadh, Saudi Arabia</p>
+          </div>
+          <div style="background:#fff; border-radius:24px; padding:30px; box-shadow:0 12px 30px rgba(59,46,42,0.07);">
+            <h3 style="font-family:'Fredoka'; font-weight:600; font-size:20px; color:#3B2E2A; margin:0 0 14px;">Call us</h3>
+            <div style="display:flex; flex-direction:column; gap:10px;">
+              <sc-for list="{{ phones }}" as="ph" hint-placeholder-count="4">
+                <a href="{{ ph.href }}" style="display:flex; justify-content:space-between; font-size:15px; color:#5B4C44; border-bottom:1px dashed #EFE3D2; padding-bottom:8px;" style-hover="color:#EE6C4D;"><span style="font-weight:700;">{{ ph.label }}</span><span dir="ltr">{{ ph.num }}</span></a>
+              </sc-for>
+            </div>
+          </div>
+          <div style="background:#5C9A87; border-radius:24px; padding:30px; color:#fff;">
+            <h3 style="font-family:'Fredoka'; font-weight:600; font-size:20px; margin:0 0 10px;">Email</h3>
+            <a href="mailto:info@hsh.edu.sa" style="color:#fff; font-size:16px; font-weight:700;" style-hover="color:#F2B441;">info@hsh.edu.sa</a>
+            <div style="display:flex; gap:12px; margin-top:20px;">
+              <a href="https://www.instagram.com/hshpreschool" target="_blank" rel="noopener" style="background:rgba(255,255,255,0.18); color:#fff; padding:9px 16px; border-radius:999px; font-weight:700; font-size:14px;" style-hover="background:rgba(255,255,255,0.3);">Instagram</a>
+              <a href="https://twitter.com/hshpreschool" target="_blank" rel="noopener" style="background:rgba(255,255,255,0.18); color:#fff; padding:9px 16px; border-radius:999px; font-weight:700; font-size:14px;" style-hover="background:rgba(255,255,255,0.3);">Twitter</a>
+              <a href="https://www.youtube.com/channel/UCB-brPYqnW0HAhhHHntGhSQ" target="_blank" rel="noopener" style="background:rgba(255,255,255,0.18); color:#fff; padding:9px 16px; border-radius:999px; font-weight:700; font-size:14px;" style-hover="background:rgba(255,255,255,0.3);">YouTube</a>
+            </div>
+          </div>
+        </div>
+        <div style="border-radius:28px; overflow:hidden; box-shadow:0 14px 34px rgba(59,46,42,0.1); min-height:520px;">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3623.895577185527!2d46.64676331500029!3d24.730464984115393!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjTCsDQzJzQ5LjciTiA0NsKwMzgnNTYuMiJF!5e0!3m2!1sen!2suk!4v1596625475759!5m2!1sen!2suk" style="border:0; width:100%; height:100%; min-height:520px;" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+      </section>
+      <div style="height:40px;"></div>
+    </div>
+    </sc-if>
+
+  </main>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer style="background:#40342E; color:#E4D6CB; padding:56px 24px 32px;">
+    <div style="max-width:1180px; margin:0 auto; display:grid; grid-template-columns:1.4fr 1fr 1fr 1fr; gap:32px;">
+      <div>
+        <div style="display:flex; align-items:center; gap:12px; margin-bottom:16px;">
+          <span style="width:44px; height:44px; border-radius:14px; background:#EE6C4D; display:flex; align-items:center; justify-content:center; color:#fff; font-family:'Fredoka'; font-weight:700; font-size:18px; transform:rotate(-4deg);">hsh</span>
+          <span style="font-family:'Fredoka'; font-weight:600; font-size:18px; color:#fff;">Home Sweet Home</span>
+        </div>
+        <p style="font-size:14.5px; line-height:1.7; color:#B7A99E; margin:0; max-width:280px;">Caring, loving &amp; learning since 2011. Your home away from home in Riyadh.</p>
+      </div>
+      <div>
+        <h4 style="font-family:'Fredoka'; font-weight:600; color:#fff; font-size:15px; margin:0 0 14px;">Explore</h4>
+        <div style="display:flex; flex-direction:column; gap:9px;">
+          <button onClick="{{ toAbout }}" style="text-align:left; background:none; border:none; cursor:pointer; color:#B7A99E; font-family:'Nunito'; font-weight:600; font-size:14.5px;" style-hover="color:#F2B441;">About HSH</button>
+          <button onClick="{{ toAcademics }}" style="text-align:left; background:none; border:none; cursor:pointer; color:#B7A99E; font-family:'Nunito'; font-weight:600; font-size:14.5px;" style-hover="color:#F2B441;">Academics</button>
+          <button onClick="{{ toAdmission }}" style="text-align:left; background:none; border:none; cursor:pointer; color:#B7A99E; font-family:'Nunito'; font-weight:600; font-size:14.5px;" style-hover="color:#F2B441;">Admission</button>
+          <button onClick="{{ toGallery }}" style="text-align:left; background:none; border:none; cursor:pointer; color:#B7A99E; font-family:'Nunito'; font-weight:600; font-size:14.5px;" style-hover="color:#F2B441;">Gallery</button>
+        </div>
+      </div>
+      <div>
+        <h4 style="font-family:'Fredoka'; font-weight:600; color:#fff; font-size:15px; margin:0 0 14px;">Families</h4>
+        <div style="display:flex; flex-direction:column; gap:9px;">
+          <a href="https://hsh.edu.sa/tuition-fees" target="_blank" rel="noopener" style="color:#B7A99E; font-weight:600; font-size:14.5px;" style-hover="color:#F2B441;">Tuition Fees</a>
+          <a href="https://calendar.app.google/8sTo9ftobCLnFdQD9" target="_blank" rel="noopener" style="color:#B7A99E; font-weight:600; font-size:14.5px;" style-hover="color:#F2B441;">Book a Visit</a>
+          <a href="https://app.whitecarrot.io/share/careers/home-sweet-home-preschool" target="_blank" rel="noopener" style="color:#B7A99E; font-weight:600; font-size:14.5px;" style-hover="color:#F2B441;">Join the Team</a>
+          <button onClick="{{ toContact }}" style="text-align:left; background:none; border:none; cursor:pointer; color:#B7A99E; font-family:'Nunito'; font-weight:600; font-size:14.5px;" style-hover="color:#F2B441;">Contact Us</button>
+        </div>
+      </div>
+      <div>
+        <h4 style="font-family:'Fredoka'; font-weight:600; color:#fff; font-size:15px; margin:0 0 14px;">Get in touch</h4>
+        <p style="font-size:14.5px; line-height:1.7; color:#B7A99E; margin:0 0 12px;">Al Muhammadiyah, Riyadh<br><a href="mailto:info@hsh.edu.sa" style="color:#F2B441;">info@hsh.edu.sa</a></p>
+        <div style="display:flex; gap:10px;">
+          <a href="https://www.instagram.com/hshpreschool" target="_blank" rel="noopener" style="color:#B7A99E; font-weight:700; font-size:13px;" style-hover="color:#F2B441;">IG</a>
+          <a href="https://twitter.com/hshpreschool" target="_blank" rel="noopener" style="color:#B7A99E; font-weight:700; font-size:13px;" style-hover="color:#F2B441;">X</a>
+          <a href="https://www.youtube.com/channel/UCB-brPYqnW0HAhhHHntGhSQ" target="_blank" rel="noopener" style="color:#B7A99E; font-weight:700; font-size:13px;" style-hover="color:#F2B441;">YT</a>
+          <a href="https://snapchat.com/t/j2I45Pcg" target="_blank" rel="noopener" style="color:#B7A99E; font-weight:700; font-size:13px;" style-hover="color:#F2B441;">Snap</a>
+        </div>
+      </div>
+    </div>
+    <div style="max-width:1180px; margin:36px auto 0; padding-top:24px; border-top:1px solid #55463E; text-align:center; font-size:13px; color:#8F8177;">© 2026 Home Sweet Home Preschool · Riyadh, Saudi Arabia · An American Authorized School</div>
+  </footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { page: 'home' };
+
+  go(page) {
+    this.setState({ page });
+    if (typeof window !== 'undefined') window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  get classesData() {
+    const C = { coral:'#F5C9B8', sage:'#BFDCCF', honey:'#FBE3A8', blush:'#F7CBC6', sky:'#BFE0E9', lilac:'#D8CBE9' };
+    return [
+      { name:'Marshmallow', age:'2–3 years', img:'https://hsh.edu.sa/images/classes/marshmallow.jpg', color:C.blush },
+      { name:'Cotton Candy', age:'2–3 years', img:'https://hsh.edu.sa/images/classes/cotton-candy.png', color:C.sky },
+      { name:'Lollipop', age:'3–4 years', img:'https://hsh.edu.sa/images/classes/lollipop.png', color:C.honey },
+      { name:'Cupcake', age:'3–4 years', img:'https://hsh.edu.sa/images/classes/cupcake.png', color:C.coral },
+      { name:'Honey', age:'3–4 years', img:'https://hsh.edu.sa/images/classes/honey.png', color:C.sage },
+      { name:'Caramel', age:'4–5 years', img:'https://hsh.edu.sa/images/classes/caramel.jpg', color:C.lilac },
+      { name:'Gingerbread', age:'4–5 years', img:'https://hsh.edu.sa/images/classes/gingerbread.jpg', color:C.honey },
+      { name:'Cookie', age:'4–5 years', img:'https://hsh.edu.sa/images/classes/cookie.png', color:C.blush },
+      { name:'Ice-cream', age:'5–6 years', img:'https://hsh.edu.sa/images/classes/ice-cream.jpg', color:C.sky },
+      { name:'Sprinkles', age:'5–6 years', img:'https://hsh.edu.sa/images/classes/sprinkles.png', color:C.coral },
+      { name:'Muffin', age:'5–6 years', img:'https://hsh.edu.sa/images/classes/muffin.png', color:C.sage },
+      { name:'Donut', age:'5–6 years', img:'https://hsh.edu.sa/images/classes/donut.png', color:C.lilac },
+    ];
+  }
+
+  renderVals() {
+    const page = this.state.page;
+    const mk = (key, label) => ({ key, label, active: page === key, onClick: () => this.go(key) });
+    const navItems = [ mk('home','Home'), mk('about','About'), mk('academics','Academics'), mk('admission','Admission'), mk('gallery','Gallery'), mk('news','News'), mk('contact','Contact') ];
+
+    const whyPoints = [
+      { title:'Nurturing', color:'#EE6C4D', body:'A warm yet stimulating environment — a home away from home.' },
+      { title:'Wellbeing', color:'#5C9A87', body:'A happy learning environment for holistic development in these precious formative years.' },
+      { title:'Curriculum & Educators', color:'#F2B441', body:'A strong, diverse and carefully structured curriculum that nurtures creativity and intellect.' },
+      { title:'Commitment to Quality', color:'#86C4D4', body:'High standards of education and childcare in a safe, respectful, inclusive environment.' },
+      { title:'Our Environment', color:'#F5A7A0', body:'The feeling of home re-created so children and families belong from the very beginning.' },
+      { title:'Community', color:'#B79CD6', body:'Strong community relationships, extracurricular activities and academic rigor for every little mind.' },
+    ];
+
+    const values = [
+      { n:'1', name:'Trust', color:'#EE6C4D' }, { n:'2', name:'Safety', color:'#5C9A87' },
+      { n:'3', name:'Education', color:'#F2B441' }, { n:'4', name:'Positive Learning', color:'#86C4D4' },
+      { n:'5', name:'Individuality', color:'#F5A7A0' }, { n:'6', name:'Inclusion', color:'#B79CD6' },
+      { n:'7', name:'Family', color:'#EE6C4D' }, { n:'8', name:'Social Responsibility', color:'#5C9A87' },
+    ];
+
+    const curriculum = [
+      { age:'2–3 yrs', title:'Marshmallow & Cotton Candy', color:'#F5A7A0', intro:'Toddler classrooms designed to engage little ones and encourage them to explore and investigate their surroundings.', points:['Motor skills through active & sensory play','Warm, welcoming, safety-first classrooms','Toys, books, puzzles & musical instruments','Growing independence and self-confidence'] },
+      { age:'3–4 yrs', title:'Lollipop, Cupcake & Honey', color:'#F2B441', intro:'Fostering a love of learning as children explore and discover their developmental milestones.', points:['World exploration into Math, Literacy & Expressive Art','Meaningful interactions for independent thinkers','Learning through hands-on purposeful play','Pre-writing skills & phonological awareness'] },
+      { age:'4–5 yrs', title:'Caramel, Gingerbread & Cookie', color:'#5C9A87', intro:'Captivating children to explore the world through authentic investigations.', points:['Reading readiness & emergent writing','Exploring Math & Science concepts','Communication and problem-solving skills','Building self-esteem, independence & self-reliance'] },
+      { age:'5–6 yrs', title:'Ice-cream, Sprinkles, Muffin & Donut', color:'#86C4D4', intro:'Innovative topics and comprehensive studies that encourage creative learning and exploration.', points:['Interest-driven learning across all areas','Reading comprehension & academic writing','Critical thinking & problem solving','Primary school readiness program'] },
+    ];
+
+    const educators = [
+      { name:'Reem Daghistani', role:'General Director', email:'rdaghistani@hsh.edu.sa', initial:'R', color:'#EE6C4D' },
+      { name:'Ghalia Wafa', role:'Student Affairs Coordinator', email:'gwafa@hsh.edu.sa', initial:'G', color:'#5C9A87' },
+      { name:'Souzan Akeel', role:'Accountant Manager', email:'sakeel@hsh.edu.sa', initial:'S', color:'#F2B441' },
+      { name:'Iman Alamdar', role:'HR Manager', email:'ialamdar@hsh.edu.sa', initial:'I', color:'#86C4D4' },
+      { name:'Mneera Al Jmael', role:'Secretary', email:'maljmael@hsh.edu.sa', initial:'M', color:'#F5A7A0' },
+      { name:'Amani Al Dweik', role:'Activity Coordinator', email:'aaldweik@hsh.edu.sa', initial:'A', color:'#B79CD6' },
+      { name:'Isra Al Bishri', role:'Academic Supervisor', email:'ialbishri@hsh.edu.sa', initial:'I', color:'#EE6C4D' },
+    ];
+
+    const testimonials = [
+      { quote:'This is the best preschool you can put your kids in Riyadh. I recommend it.', name:'Ziad Al Mohammad', dir:'ltr', color:'#EE6C4D' },
+      { quote:'An amazing place to put your kids in. Professional staff with great management — no need to worry about your kids, they are in safe hands.', name:'Mojahid Al Enezy', dir:'ltr', color:'#5C9A87' },
+      { quote:'أشكركم على المجهود الرائع والمبذول في تعليم ورعاية أطفالنا وإلى المستوى المأمول الذي وصلوا إليه', name:'بندر الطعيمي', dir:'rtl', color:'#F2B441' },
+      { quote:'إدارة ومعلمين مميزين ومدرسة مميزة بطريقة التعليم والتواصل مع الأهل فتخرج طلاب وطالبات مميزين.', name:'ولي أمر', dir:'rtl', color:'#86C4D4' },
+      { quote:'شكراً لزرعكم الابتسامة في قلوب أطفالنا ودعمهم وتحفيزهم للتعليم، شكراً لأنكم مدرسة رائعة بكل تفاصيلها.', name:'والدة عبدالعزيز هنيدي', dir:'rtl', color:'#F5A7A0' },
+      { quote:'كل ما تقومون به متقن.. هذا هو الإحسان، فجزاكم الله خيراً.', name:'رشيد الرشيد', dir:'rtl', color:'#B79CD6' },
+    ];
+
+    const partners = [
+      { name:'Arabian Child', img:'https://hsh.edu.sa/images/partners/arabian-child.png' },
+      { name:'Bayzat', img:'https://hsh.edu.sa/images/partners/bayzat.jpg' },
+      { name:'Boecker', img:'https://hsh.edu.sa/images/partners/boecker.png' },
+      { name:'The Creative Curriculum', img:'https://hsh.edu.sa/images/partners/the-creative-curriculum.jpg' },
+      { name:'ECRA', img:'https://hsh.edu.sa/images/partners/ecra.jpg' },
+      { name:'Google', img:'https://hsh.edu.sa/images/partners/google.png' },
+      { name:'Microsoft', img:'https://hsh.edu.sa/images/partners/microsoft.png' },
+      { name:'Protect-ED', img:'https://hsh.edu.sa/images/partners/protect-ed.jpg' },
+    ];
+
+    const admissionSteps = [
+      { n:'01', title:'Book a Visit', body:'Tour our home, meet the team and see the classrooms where your child will learn and play.', color:'#EE6C4D' },
+      { n:'02', title:'Pre-Register', body:'Complete the pre-registration form to join the waiting list for your preferred age group.', color:'#F2B441' },
+      { n:'03', title:'Meet & Assess', body:'A warm conversation to understand your child\u2019s needs and find the right sweet classroom.', color:'#5C9A87' },
+      { n:'04', title:'Welcome Home', body:'Enrol and begin a gentle settling-in period so your family feels at home from day one.', color:'#86C4D4' },
+    ];
+
+    const news = [
+      { date:'12 Feb', title:'Home Sweet Home 12th Anniversary', body:'We celebrate the anniversary of our beloved school with our children and team — to many more years of caring, loving & learning.', dir:'ltr', color:'#EE6C4D' },
+      { date:'23 Sep', title:'اليوم الوطني السعودي', body:'تحتفل المملكة العربية السعودية باليوم الوطني لتوحيد المملكة في 23 سبتمبر من كل عام.', dir:'rtl', color:'#5C9A87' },
+      { date:'22 Feb', title:'يوم التأسيس السعودي', body:'يوم التأسيس السعودي هو ذكرى تأسيس الدولة السعودية، ويوافق 22 فبراير من كل عام.', dir:'rtl', color:'#F2B441' },
+      { date:'01 Mar', title:'يوم العلم السعودي', body:'مناسبة وطنية تحتفي بها المملكة العربية السعودية بالعلم السعودي.', dir:'rtl', color:'#86C4D4' },
+      { date:'20 Mar', title:'International Day of Happiness', body:'Helping children and families realise the importance of happiness in their everyday lives.', dir:'ltr', color:'#F5A7A0' },
+      { date:'21 Mar', title:"Mother's Day", body:'A global celebration of motherhood — honouring the wonderful mothers in our HSH family.', dir:'ltr', color:'#B79CD6' },
+      { date:'25 Jan', title:'Little Engineer', body:'Hands-on STEM discovery where our little ones build, tinker and problem-solve together.', dir:'ltr', color:'#EE6C4D' },
+      { date:'07 Mar', title:'أهلاً رمضان', body:'نستقبل شهر رمضان المبارك بالأنشطة والفعاليات التي تحتفي بروح الشهر الكريم.', dir:'rtl', color:'#5C9A87' },
+      { date:'18 Dec', title:'اليوم العالمي للغة العربية', body:'نحتفي باللغة العربية بوصفها ركناً من أركان التنوع الثقافي — لغة الشعر والفنون.', dir:'rtl', color:'#F2B441' },
+    ];
+
+    const gallery = ['1623097248','1623097340','1623097367','1623097389','1623097595','1623097641','1623097692','1623097720','1623097870','1623097931','1623097965','1623098052','1623098081','1623098101','1623098178','1623098197','1623098302','1623098470','1623099038','1623099063','1623099108','1623099137'].map(id => 'https://hsh.edu.sa/images/gallery/' + id + '.JPG');
+
+    const phones = [
+      { label:'Reception', num:'+966 53 553 1863', href:'tel:+966535531863' },
+      { label:'Administration', num:'+966 50 410 8131', href:'tel:+966504108131' },
+      { label:'Activities', num:'+966 50 543 8822', href:'tel:+966505438822' },
+      { label:'Office', num:'+966 11 202 1235', href:'tel:+966112021235' },
+    ];
+
+    const classes = this.classesData;
+
+    return {
+      page,
+      isHome: page==='home', isAbout: page==='about', isAcademics: page==='academics',
+      isAdmission: page==='admission', isGallery: page==='gallery', isNews: page==='news', isContact: page==='contact',
+      navItems,
+      toHome: () => this.go('home'), toAbout: () => this.go('about'), toAcademics: () => this.go('academics'),
+      toAdmission: () => this.go('admission'), toGallery: () => this.go('gallery'), toContact: () => this.go('contact'),
+      whyPoints, values, curriculum, educators, testimonials, partners, admissionSteps, news, gallery, phones,
+      classes, classesTop: classes.slice(0, 4),
+    };
+  }
+}
+</script>
+</body>
+</html>
